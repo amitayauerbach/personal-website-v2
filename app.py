@@ -1,65 +1,41 @@
-
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template
 from flask_mail import Mail, Message
-import os
-from firebase_config import db
-import datetime
 
-app = Flask(__name__, static_folder='.')
-app.secret_key = os.urandom(24)
+app = Flask(__name__)
 
-# Mail settings
+# Configure Flask-Mail
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = os.getenv('GMAIL_USER')
-app.config['MAIL_PASSWORD'] = os.getenv('GMAIL_PASSWORD')
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USERNAME'] = 'amitayab@gmail.com'  # Replace with your email
+app.config['MAIL_PASSWORD'] = 'upte aewy otup klxh'         # Replace with your email password
+app.config['MAIL_DEFAULT_SENDER'] = 'amitayab@gmail.com'
+
 mail = Mail(app)
 
-@app.route('/')
+@app.route("/")
 def index():
-    return app.send_static_file('index.html')
+    return send_file("index.html")  # This will serve index.html from the main folder
 
-@app.route('/send_email', methods=['POST'])
+@app.route("/send_email", methods=["POST"])
 def send_email():
+    name = request.form["name"]
+    email = request.form["email"]
+    message_body = request.form["message"]
+
+    # Create email message
+    msg = Message("New Contact Form Submission", recipients=["amitayab@gmail.com"])
+    msg.body = f"""
+    Name: {name}
+    Email: {email}
+    Message: {message_body}
+    """
     try:
-        name = request.form['name']
-        email = request.form['email']
-        message = request.form['message']
-        
-        msg = Message(
-            subject='New Contact Form Message',
-            sender=email,
-            recipients=['amitayab@gmail.com']
-        )
-        msg.body = f"""
-From: {name}
-Email: {email}
-Message:
-{message}
-"""
-        
         mail.send(msg)
-        # Store message in Firebase
-        db.collection('messages').add({
-            'name': name,
-            'email': email,
-            'message': message,
-            'timestamp': datetime.datetime.now()
-        })
-        return 'Message sent successfully!'
+        return "Message sent successfully!"
     except Exception as e:
-        return f'Error sending message: {str(e)}', 500
+        return f"Failed to send message: {e}", 500
 
-@app.route('/api/stats', methods=['GET'])
-def get_stats():
-    try:
-        messages = db.collection('messages').stream()
-        return jsonify({
-            'total_messages': len(list(messages))
-        })
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    app.run(debug=True)
