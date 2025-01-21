@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amitay Auerbach</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,255;1,255&display=swap" rel="stylesheet">
+
+  <!-- Scripts -->
+  <script src="https://kit.fontawesome.com/2ceada1413.js" crossorigin="anonymous"></script>
+</head>
+<body class="roboto-mono-body">
+  <!-- Navigation -->
+  <nav class="icons-container">
+    <div class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul>
+      <li><a href="#about"><i class="fas fa-user-circle"></i> About Me</a></li>
+      <li><a href="#highlights"><i class="fas fa-star"></i> Highlights</a></li>
+      <li><a href="#contact"><i class="fas fa-paper-plane"></i> Contact</a></li>
+      <li><a href="#cv"><i class="fas fa-file-pdf"></i> CV</a></li>
+    </ul>
+  </nav>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="name-container">
+        <h1>Amitay Auerbach</h1>
+        <button id="theme-toggle" class="theme-toggle">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Picture Section -->
+  <div class="picture-container">
+    <img src="assets/my-pic-edit.jpeg" alt="Amitay Auerbach" width="200">
+    <div class="text-icons-container">
+      <p>Hi, I'm Amitay! I'm a Product Analyst and Manager with three years of experience.</p>
+      <nav class="icons-container">
+        <a href="https://www.linkedin.com/in/amitay-auerbach-3833721ab/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://x.com/amitayay1" target="_blank"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" onclick="copyEmail(event)"><i class="fas fa-envelope"></i></a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        <div>31 years old from Tel Aviv.</div>
+        <div>Decision Scientist at PayPal.</div>
+        <div>B.Sc. in Industrial Engineering.</div>
+        <div>
+           Specializing in data-driven solutions, I bring expertise in product analytics, fraud mitigation, and customer experience.
+
+        </div>
+      </p>
+    </section>
+
+    <section id="highlights">
+      <h2>Highlights</h2>
+      <div class="highlights-container">
+        <a href="https://www.linkedin.com/in/amitay-auerbach-3833721ab/" target="_blank" class="highlight-box">
+          <i class="fab fa-paypal"></i>
+          <span>PayPal's Organization Champion – Work Customer Back</span>
+        </a>
+        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7006643660666630144/" target="_blank" class="highlight-box">
+          <i class="fab fa-paypal"></i>
+          <span>PayPal Global Innovation Tournament</span>
+        </a>
+        <a href="https://www.linkedin.com/feed/update/urn:li:activity:6837310496484425728/" target="_blank" class="highlight-box">
+          <i class="fas fa-chart-line"></i>
+          <span>Plarium Data-thon</span>
+        </a>
+        <a href="https://www.example.com/fraud" target="_blank" class="highlight-box">
+          <i class="fas fa-basketball-ball"></i>
+          <span>Israeli NBA Representative Analysis</span>
+        </a>
+      </div>
+    </section>
+
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <div>Feel free to connect with me on any of my active platforms or send me a message directly below.</div>
+      <div id="message-count">Total messages sent: 0</div>
+      <div class="contact-social-icons">
+        <a href="https://www.linkedin.com/in/amitay-auerbach-3833721ab/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://x.com/amitayay1" target="_blank"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" onclick="copyEmail(event)"><i class="fas fa-envelope"></i></a>
+      </div>
+      <br>
+      <div class="form-container">
+        <form action="/send_email" method="post">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="cv">
+       <h2>CV</h2>
+          <div class="cv-download-container">
+            <a href="CV Amitay Auerbach 2025.pdf" download class="cv-download-link">
+              <div class="cv-download-card">
+                <i class="fas fa-file-download"></i>
+                <span>Tap to download CV</span>
+              </div>
+            </a>
+          </div>
+        </section>
+        </ul>
+      </nav>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Amitay Auerbach</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
