@@ -1,6 +1,5 @@
-from flask import Flask, request, flash, redirect, send_file
+from flask import Flask, request, flash, redirect, send_file, send_from_directory, render_template
 from flask_mail import Mail, Message
-import os
 
 app = Flask(__name__)
 
@@ -13,23 +12,24 @@ app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
 app.config['MAIL_USERNAME'] = 'amitayab@gmail.com'  # Replace with your email
-app.config['MAIL_PASSWORD'] = 'upte aewy otup klxh'   # Replace with your email app password
+app.config['MAIL_PASSWORD'] = 'upte aewy otup klxh'  # Replace with your app password
 app.config['MAIL_DEFAULT_SENDER'] = 'amitayab@gmail.com'
 
 mail = Mail(app)
 
+# Serve the index.html
 @app.route("/")
 def index():
-    # Serve the index.html file from the root directory
-    return send_file("index.html")
+    return send_file("index.html")  # Make sure index.html is in the root directory
 
+# Handle the email form submission
 @app.route("/send_email", methods=["POST"])
 def send_email():
     name = request.form.get("name")
     email = request.form.get("email")
     message_body = request.form.get("message")
 
-    # Create email message
+    # Create the email message
     msg = Message("New Contact Form Submission", recipients=["amitayab@gmail.com"])
     msg.body = f"""
     Name: {name}
@@ -39,10 +39,14 @@ def send_email():
     try:
         mail.send(msg)
         flash("Message sent successfully!", "success")
-        return redirect("/")
     except Exception as e:
         flash(f"Failed to send message: {e}", "error")
-        return redirect("/")
+    return redirect("/")
+
+# Serve the CSS file
+@app.route('/style.css')
+def serve_css():
+    return send_from_directory('.', 'style.css')  # Ensure style.css is in the root directory
 
 if __name__ == "__main__":
     app.run(debug=True)
