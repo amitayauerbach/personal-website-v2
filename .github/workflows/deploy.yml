@@ -1,31 +1,37 @@
-name: Deploy to Firebase Hosting
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - main  # Trigger the workflow on push to 'main' branch
+      - main  # Trigger deployment when changes are pushed to the 'main' branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'  # Adjust version based on your project's needs
+      # Set up Node.js (if needed for your build process)
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Change to the version of Node.js you're using
 
-    - name: Install dependencies
-      run: npm install
+      # Install dependencies (if you have a package.json)
+      - name: Install dependencies
+        run: npm install
 
-    - name: Set up Firebase CLI
-      run: |
-        curl -sL https://firebase.tools | bash
-        firebase --version
+      # Build the site (if you have a build step)
+      - name: Build site
+        run: npm run build  # Change this if your build command is different
 
-    - name: Firebase deploy
-      run: |
-        firebase deploy --only hosting --token ${{ secrets.FIREBASE_TOKEN }} --debug
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages  # The branch GitHub Pages uses
+          folder: build     # The folder containing your built site (adjust as needed)
+          token: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for deployment
