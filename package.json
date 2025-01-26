@@ -2,9 +2,9 @@
   "name": "personal-website-v2",
   "version": "1.0.0",
   "main": "index.js",
-"scripts": {
-  "start": "live-server --port=3000"
-},
+  "scripts": {
+    "start": "live-server --port=3000"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/amitayauerbach/personal-website-v2.git"
@@ -19,5 +19,8 @@
   "description": "",
   "devDependencies": {
     "live-server": "^1.2.2"
+  },
+  "dependencies": {
+    "firebase": "^11.2.0"
   }
 }

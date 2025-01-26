@@ -1,0 +1,53 @@
+
+# Personal Portfolio Website
+
+A modern, responsive personal portfolio website for Amitay Auerbach built with HTML, CSS, JavaScript, and Python Flask.
+
+## Features
+
+- Dark/Light theme toggle
+- Responsive design
+- Contact form with email integration
+- Firebase integration for message storage
+- Interactive UI elements
+- CV download section
+- Social media links
+
+## Technologies Used
+
+- Frontend: HTML5, CSS3, JavaScript
+- Backend: Python Flask
+- Database: Firebase
+- Email: Flask-Mail
+- Icons: Font Awesome
+
+## Setup
+
+1. Set required environment variables:
+   - GMAIL_USER: Gmail account for sending emails
+   - GMAIL_PASSWORD: Gmail app password
+   - Firebase credentials in firebase_config.py
+
+2. Install dependencies:
+   ```
+   pip install flask flask-mail firebase-admin
+   ```
+
+3. Run the application:
+   ```
+   python app.py
+   ```
+
+The website will be available at `http://0.0.0.0:5000`
+
+## Structure
+
+- `index.html` - Main webpage
+- `style.css` - Styling and animations
+- `script.js` - Frontend functionality
+- `app.py` - Flask backend server
+- `firebase_config.py` - Firebase configuration
+
+## Contact
+
+For any inquiries, reach out through the contact form or directly via email at amitayab@gmail.com
