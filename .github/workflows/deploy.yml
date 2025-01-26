@@ -21,9 +21,6 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Build the project (if needed)
-      run: npm run build  # Adjust this command if your website requires a build step
-
     - name: Set up Firebase CLI
       run: |
         curl -sL https://firebase.tools | bash
