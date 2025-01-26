@@ -1,9 +1,9 @@
-name: Deploy to GitHub Pages
+name: Deploy to Firebase Hosting
 
 on:
   push:
     branches:
-      - main
+      - main  # Trigger the workflow on push to 'main' branch
 
 jobs:
   deploy:
@@ -13,8 +13,22 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./
+        node-version: '16'  # Adjust version based on your project's needs
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build the project (if needed)
+      run: npm run build  # Adjust this command if your website requires a build step
+
+    - name: Set up Firebase CLI
+      run: |
+        curl -sL https://firebase.tools | bash
+        firebase --version
+
+    - name: Firebase deploy
+      run: |
+        firebase deploy --only hosting --token ${{ secrets.FIREBASE_TOKEN }}
